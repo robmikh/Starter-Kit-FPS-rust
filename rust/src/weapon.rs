@@ -14,9 +14,9 @@ pub struct Weapon {
     muzzle_position: Vector3,
 
     #[export(range = (0.1, 1.0))]
-    cooldown: f32,
+    cooldown: f64,
     #[export(range = (1.0, 20.0))]
-    max_distance: i32,
+    max_distance: f32,
     #[export(range = (0.0, 100.0))]
     damage: f32,
     #[export(range = (0.0, 5.0))]
@@ -24,7 +24,7 @@ pub struct Weapon {
     #[export(range = (1.0, 5.0))]
     shot_count: i32,
     #[export(range = (0.0, 20.0))]
-    knockback: i32,
+    knockback: f32,
 
     #[export]
     sound_shoot: GString,
@@ -46,11 +46,11 @@ impl IResource for Weapon {
             muzzle_position: Vector3::ZERO,
 
             cooldown: 0.1,
-            max_distance: 10,
+            max_distance: 10.0,
             damage: 25.0,
             spread: 0.0,
             shot_count: 1,
-            knockback: 20,
+            knockback: 20.0,
 
             sound_shoot: GString::new(),
 

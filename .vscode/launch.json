@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Debug Project (Godot 4)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/godot",
+            "args": [
+                "-w", // windowed mode
+            ],
+            "program": "godot.exe"
+        }
+    ]
+}

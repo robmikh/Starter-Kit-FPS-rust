@@ -3,6 +3,7 @@ mod audio;
 mod hud;
 mod weapon;
 mod impact;
+mod player;
 
 use godot::prelude::*;
 

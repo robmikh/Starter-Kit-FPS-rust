@@ -7,8 +7,8 @@
 model = ExtResource("2_h64nv")
 rotation = Vector3(0, 180, 0)
 muzzle_position = Vector3(0.1, -0.4, 1.5)
+cooldown = 0.1
 damage = 10.0
 spread = 0.5
-knockback = 10
 sound_shoot = "sounds/blaster_repeater.ogg"
 crosshair = ExtResource("1_hoqei")
