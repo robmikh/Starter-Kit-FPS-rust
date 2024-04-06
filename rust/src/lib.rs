@@ -1,5 +1,6 @@
 mod enemy;
 mod audio;
+mod hud;
 
 use godot::prelude::*;
 
