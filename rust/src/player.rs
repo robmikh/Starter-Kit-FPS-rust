@@ -182,7 +182,6 @@ impl ICharacterBody3D for Player {
 
 #[godot_api]
 impl Player {
-    #[func]
     pub fn handle_controls(&mut self, _delta: f64) {
         let mut input = Input::singleton();
 
@@ -226,7 +225,6 @@ impl Player {
         self.action_weapon_toggle();
     }
 
-    #[func]
     fn handle_gravity(&mut self, delta: f64) {
         self.gravity += 20.0 * delta as f32;
         if self.gravity > 0.0 && self.base().is_on_floor() {
@@ -235,7 +233,6 @@ impl Player {
         }
     }
 
-    #[func]
     fn action_jump(&mut self) {
         self.gravity = -self.jump_strength;
 
@@ -243,7 +240,6 @@ impl Player {
         self.jump_double = true;
     }
 
-    #[func]
     fn action_shoot(&mut self) {
         let input = Input::singleton();
         if input.is_action_pressed("shoot".into()) {
@@ -307,7 +303,6 @@ impl Player {
         }
     }
 
-    #[func]
     fn action_weapon_toggle(&mut self) {
         let input = Input::singleton();
         if input.is_action_just_pressed("weapon_toggle".into()) {

@@ -1,5 +1,5 @@
 use godot::prelude::*;
-use godot::engine::{CanvasLayer, ICanvasLayer, Resource, Texture2D};
+use godot::engine::{Resource, Texture2D};
 
 #[derive(GodotClass)]
 #[class(base=Resource)]

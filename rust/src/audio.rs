@@ -29,7 +29,7 @@ impl INode for AudioBase {
     }
 
     fn ready(&mut self) {
-        for i in 0..self.num_players {
+        for _ in 0..self.num_players {
             let mut p = AudioStreamPlayer::new_alloc();
             self.base_mut().add_child(p.clone().upcast());
 
