@@ -1,9 +1,9 @@
-mod enemy;
 mod audio;
+mod enemy;
 mod hud;
-mod weapon;
 mod impact;
 mod player;
+mod weapon;
 
 use godot::prelude::*;
 

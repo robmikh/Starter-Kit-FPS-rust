@@ -1,19 +1,16 @@
-use godot::prelude::*;
 use godot::engine::{CanvasLayer, ICanvasLayer, Label};
+use godot::prelude::*;
 
 #[derive(GodotClass)]
 #[class(base=CanvasLayer)]
 pub struct HUD {
-    base: Base<CanvasLayer>
+    base: Base<CanvasLayer>,
 }
-
 
 #[godot_api]
 impl ICanvasLayer for HUD {
     fn init(base: Base<CanvasLayer>) -> Self {
-        Self {
-            base,
-        }
+        Self { base }
     }
 }
 

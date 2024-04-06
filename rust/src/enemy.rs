@@ -1,5 +1,5 @@
-use godot::prelude::*;
 use godot::engine::{AnimatedSprite3D, Area3D, Node3D, RayCast3D};
+use godot::prelude::*;
 use rand::Rng;
 
 #[derive(GodotClass)]
@@ -17,7 +17,7 @@ struct Enemy {
     target_position: Vector3,
     destroyed: bool,
 
-    base: Base<Area3D>
+    base: Base<Area3D>,
 }
 
 #[godot_api]
@@ -52,7 +52,10 @@ impl INode3D for Enemy {
         let position = self.player.as_ref().map(|x| x.get_position());
         if let Some(position) = position {
             //godot_print!("position: {:?}", position);
-            self.base_mut().look_at_ex(position + Vector3::new(0.0, 0.5, 0.0)).use_model_front(true).done();
+            self.base_mut()
+                .look_at_ex(position + Vector3::new(0.0, 0.5, 0.0))
+                .use_model_front(true)
+                .done();
         }
         self.target_position.y += ((self.time * 5.0).cos() * delta) as f32;
 
@@ -91,9 +94,9 @@ impl Enemy {
             if let Some(mut collider) = collider {
                 if collider.has_method("damage".into()) {
                     Self::play_default_animation(&mut self.muzzle_a);
-                    Self::play_default_animation(&mut self.muzzle_b); 
+                    Self::play_default_animation(&mut self.muzzle_b);
                     self.play_sound("sounds/enemy_attack.ogg");
-                    collider.call("damage".into(), &[ Variant::from(5.0) ]);
+                    collider.call("damage".into(), &[Variant::from(5.0)]);
                 }
             }
         }
@@ -112,4 +115,3 @@ impl Enemy {
         audio.call("play".into(), &[Variant::from(GString::from(audio_path))]);
     }
 }
-

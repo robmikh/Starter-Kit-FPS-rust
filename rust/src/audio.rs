@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 
-use godot::prelude::*;
 use godot::engine::{Node, ResourceLoader};
+use godot::prelude::*;
 use rand::Rng;
 
 #[derive(GodotClass)]
@@ -12,7 +12,7 @@ pub struct AudioBase {
     available: VecDeque<Gd<AudioStreamPlayer>>,
     queue: VecDeque<String>,
 
-    base: Base<Node>
+    base: Base<Node>,
 }
 
 #[godot_api]
@@ -35,11 +35,15 @@ impl INode for AudioBase {
 
             p.set_volume_db(-10.0);
             let bind_p = p.clone();
-            p.connect("finished".into(), self.base().callable("_on_stream_finished").bindv((&[Variant::from(bind_p)]).into()));
+            p.connect(
+                "finished".into(),
+                self.base()
+                    .callable("_on_stream_finished")
+                    .bindv((&[Variant::from(bind_p)]).into()),
+            );
             p.set_bus(self.bus.into());
 
             self.available.push_back(p);
-
         }
     }
 
@@ -47,7 +51,9 @@ impl INode for AudioBase {
         if !self.queue.is_empty() && !self.available.is_empty() {
             let queued_front = self.queue.pop_front().unwrap();
             let mut available_front = self.available.pop_front().unwrap();
-            let resource = ResourceLoader::singleton().load(queued_front.into()).unwrap();
+            let resource = ResourceLoader::singleton()
+                .load(queued_front.into())
+                .unwrap();
             available_front.set_stream(resource.cast());
             available_front.play();
             available_front.set_pitch_scale(rand::thread_rng().gen_range(0.9..1.1));
@@ -55,14 +61,16 @@ impl INode for AudioBase {
     }
 }
 
-
 #[godot_api]
 impl AudioBase {
     #[func]
     pub fn play(&mut self, sound_path: GString) {
         let sound_path = sound_path.to_string();
         let sounds = sound_path.split(",").collect::<Vec<_>>();
-        self.queue.push_back(format!("res:///{}", sounds[rand::thread_rng().gen_range(0..sounds.len())].trim()));
+        self.queue.push_back(format!(
+            "res:///{}",
+            sounds[rand::thread_rng().gen_range(0..sounds.len())].trim()
+        ));
     }
 
     #[func]

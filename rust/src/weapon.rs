@@ -1,5 +1,5 @@
-use godot::prelude::*;
 use godot::engine::{Resource, Texture2D};
+use godot::prelude::*;
 
 #[derive(GodotClass)]
 #[class(base=Resource)]
@@ -32,9 +32,8 @@ pub struct Weapon {
     #[export]
     crosshair: Option<Gd<Texture2D>>,
 
-    base: Base<Resource>
+    base: Base<Resource>,
 }
-
 
 #[godot_api]
 impl IResource for Weapon {
